@@ -3,16 +3,16 @@ from django.http import HttpResponse
 from .models import *
 
 # Create your views here.
-def index(request):
-    return render(request, "owner/index.html")
 
-def menu(request,Menu_id):
-    menu=Menu.objects.all()
-    context = {"menu": menu}
-    return render(request, "owner/index.html",context)
-   
+def main(request):
+    return render(request, "owner/layout.html")
 
+def add_member(request):
+    return render(request, "owner/add_member.html")
 
-def user(request):
-    user = User.objects.all()
-    return render(request, "owner/index.html")
+def pay_history(request):
+    return render(request, "owner/history.html")
+
+def menu(request):
+    return render(request, "owner/menu.html")
+
