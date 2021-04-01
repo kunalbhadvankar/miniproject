@@ -1,6 +1,6 @@
 
 
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login as auth_login, logout as django_logout
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms  import UserCreationForm
 from django.http import HttpResponse, HttpResponseRedirect
@@ -15,10 +15,11 @@ def login(request):
         
         user = authenticate(request, username=username, password=password)
         if user is not None:
-            login(request,user)
+            auth_login(request,user)
             return redirect('main')
         else:
-            messages.info(request, 'username or password is incorrect')
+            return render(request, "owner/login.html",{
+                "message": "invalid credentials"
                   
     return render(request, "owner/login.html")
 
@@ -41,5 +42,7 @@ def menu(request):
 def home(request):
     pass
 def logout(request):
-    pass
+    django_logout(request)
+    return render(request, 'owner/login.html')
+
 
