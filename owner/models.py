@@ -18,8 +18,9 @@ class History(models.Model):
    
 class Menu(models.Model):
     CATEGORY=(
-        ('Veg','Veg'),
-        ('Non-Veg','Non-Veg')
+        ('Beverages','Beverages'),
+        ('Thali','Thali'),
+        ('snaks', 'snacks')
     )
     Menu_id = models.AutoField(primary_key=True)
     Name= models.CharField(max_length=50, null=True)
