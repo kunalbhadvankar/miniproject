@@ -8,26 +8,10 @@ from .models import *
 from django.contrib import messages
 from django.urls import reverse
 # Create your views here.
-def login(request):
-    if request.method == 'POST':
-        username =  request.POST.get('username')
-        password = request.POST.get('password') 
-        
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-            login(request,user)
-            return redirect('main')
-        else:
-            messages.info(request, 'username or password is incorrect')
-                  
-    return render(request, "owner/login.html")
 
-def main(request):
-    
+
+def main(request): 
     return render(request, "owner/layout.html")
-
-
-
 
 def add_member(request):
     return render(request, "owner/add_member.html")
@@ -40,6 +24,21 @@ def menu(request):
 
 def home(request):
     pass
+
+
+def login(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return HttpResponseRedirect(reverse("main"))
+        else:
+            messages.info(request, 'username or password is incorrect')
+
+    return render(request, "owner/login.html")
 def logout(request):
-    pass
+    ret
 
