@@ -9,12 +9,6 @@ from django.contrib import messages
 from django.urls import reverse
 # Create your views here.
 
-def main(request):
-    
-    return render(request, "owner/layout.html")
-
-
-
 
 def main(request): 
     return render(request, "owner/layout.html")
@@ -28,6 +22,11 @@ def pay_history(request):
 def menu(request):
     return render(request, "owner/menu.html")
 
+
+def home(request):
+    pass
+
+
 def login(request):
     if request.method == 'POST':
         username=request.POST.get('username')
@@ -38,14 +37,8 @@ def login(request):
             return redirect('main')
         else:
             return render(request, "owner/login.html", {
-                "message": "invalid credentials"
-
+                "message": "invalid credentials"})
     return render(request, "owner/login.html")
-
-def home(request):
-    pass
-
-
 
 def logout(request):
     django_logout(request)
