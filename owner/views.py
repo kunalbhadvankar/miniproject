@@ -8,20 +8,6 @@ from .models import *
 from django.contrib import messages
 from django.urls import reverse
 # Create your views here.
-def login(request):
-    if request.method == 'POST':
-        username =  request.POST.get('username')
-        password = request.POST.get('password') 
-        
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-            auth_login(request,user)
-            return redirect('main')
-        else:
-            return render(request, "owner/login.html",{
-                "message": "invalid credentials"
-                  
-    return render(request, "owner/login.html")
 
 def main(request):
     
@@ -41,6 +27,20 @@ def pay_history(request):
 
 def menu(request):
     return render(request, "owner/menu.html")
+
+def login(request):
+    if request.method == 'POST':
+        username=request.POST.get('username')
+        password=request.POST.get('password')
+        user=authenticate(request, username=username, password=password)
+        if user is not None:
+            auth_login(request, user)
+            return redirect('main')
+        else:
+            return render(request, "owner/login.html", {
+                "message": "invalid credentials"
+
+    return render(request, "owner/login.html")
 
 def home(request):
     pass
