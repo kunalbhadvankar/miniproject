@@ -1,6 +1,6 @@
 
 
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login as auth_login, logout as django_logout
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms  import UserCreationForm
 from django.http import HttpResponse, HttpResponseRedirect
@@ -8,6 +8,26 @@ from .models import *
 from django.contrib import messages
 from django.urls import reverse
 # Create your views here.
+def login(request):
+    if request.method == 'POST':
+        username =  request.POST.get('username')
+        password = request.POST.get('password') 
+        
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            auth_login(request,user)
+            return redirect('main')
+        else:
+            return render(request, "owner/login.html",{
+                "message": "invalid credentials"
+                  
+    return render(request, "owner/login.html")
+
+def main(request):
+    
+    return render(request, "owner/layout.html")
+
+
 
 
 def main(request): 
@@ -26,19 +46,10 @@ def home(request):
     pass
 
 
-def login(request):
-    if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
 
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-            login(request, user)
-            return HttpResponseRedirect(reverse("main"))
-        else:
-            messages.info(request, 'username or password is incorrect')
-
-    return render(request, "owner/login.html")
 def logout(request):
-    ret
+    django_logout(request)
+    return render(request, 'owner/login.html')
+
+
 

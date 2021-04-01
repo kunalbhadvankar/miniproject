@@ -146,10 +146,16 @@
           <div class="navbar"> 
               <div class="info">
               <ul>
-                  <li>owner name: vaishnavi acharekar</li>
-                  <li>email Id: vaishnavi@123</li>
+                  <li>owner name: {{request.user.username}}</li>
+                  <li>email Id: {{request.user.email}}</li>
                   <br>
-                  <li>date: 29/03/2021</li>
+                  <li><p id="fulldate"></p>
+                    <script>
+                        var today = new Date;
+                        var date = "Date: " + today.getDate() + "/"+ (today.getMonth()+1) + "/" + today.getFullYear();
+                        document.getElementById("fulldate").innerHTML = date;
+                
+                    </script></li></li>
                   <li>Total members: 35</li>
                 </ul>
                 <div class="info2">
