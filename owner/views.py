@@ -20,7 +20,8 @@ def pay_history(request):
     return render(request, "owner/history.html")
 
 def menu(request):
-    return render(request, "owner/menu.html")
+    menu = Menu.objects.all()
+    return render(request, "owner/menu.html",{'menu': menu})
 
 
 def home(request):
