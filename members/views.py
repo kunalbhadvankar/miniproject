@@ -4,6 +4,6 @@ from django.shortcuts import render
 
 
 def main(request):
-    return render(request, "owner/layout.html")
+    return render(request, "members/main.html")
 
 
