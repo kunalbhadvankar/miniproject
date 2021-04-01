@@ -37,6 +37,9 @@ def pay_history(request):
 
 def menu(request):
     return render(request, "owner/menu.html")
+
+def home(request):
+    pass
 def logout(request):
     pass
 
