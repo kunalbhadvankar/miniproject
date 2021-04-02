@@ -37,6 +37,7 @@ def menu(request):
 def home(request):
     pass
 
+
 @unauthenticated_user
 def login_owner(request):
     if request.method == 'POST':
