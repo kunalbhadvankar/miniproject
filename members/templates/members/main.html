@@ -1,4 +1,4 @@
-{%extends 'owner/layout.html'%}
+{%extends "members/layout.html"%}
 {% block body%}
-<h1>HEllo members</h1>
+<h1>HEllo {{request.user.first_name}}</h1>
 {%endblock%}
