@@ -1,0 +1,32 @@
+{% extends 'owner/layout.html' %}
+
+{% block body %}
+  <h1>Add Member</h1>
+      <form method="POST", action="">
+      {% csrf_token %}
+          {{form.as_p}}
+          <input type="submit" value="Register">
+      </form>
+
+     
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  {% endblock %}
