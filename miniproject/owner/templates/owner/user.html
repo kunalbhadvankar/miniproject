@@ -176,6 +176,52 @@
             </div>
           </div>
         </div>
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+              Present/not
+            </button>
+            
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <div id="checkBoxes">
+                
+                <li>
+                    <label for="first">
+                        <input type="checkbox" id="first" />
+                        today
+                    </label>
+                </li>
+               
+                <li>
+                    <label for="third">
+                        <input type="checkbox" id="first" />
+                        Lunch
+                    </label>
+                </li>
+                <li>
+                    <label for="fourth">
+                        <input type="checkbox" id="first" />
+                        Dinner
+                    </label>
+                </li>
+                <li>
+                    <label for="second">
+                        <input type="checkbox" name="daterange" value=" " />
+                        More
+                        <script>
+                            $(function() {
+                              $('input[name="daterange"]').daterangepicker({
+                            opens: 'left'
+                              }, function(start, end, label) {
+                            console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+                             });
+                            });
+                            </script>
+                    </label>
+                </li>
+             <input type="submit" value="submit"	/>
+            </div>
+         </ul>
+         </div>
         {% block body %}
         
         
