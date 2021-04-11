@@ -7,8 +7,7 @@ from django.contrib import messages
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from .decorators import unauthenticated_user, allowed_users, admin_only
-from django.contrib.auth.forms import UserCreationForm
-from .forms import UserForm 
+from .forms import userform, info
 # Create your views here.
 
 @unauthenticated_user
@@ -36,13 +35,30 @@ def main(request):
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['admin'])
 def add_member(request):
-    form = UserForm()
+    register = False
     if request.method == 'POST':
-        form = UserForm(request.POST)
-        if form.is_valid():
-            form.save()
-    context = {'form': form}
-    return render(request, "owner/add_member.html", context)
+        user_form= userform(data=request.POST)
+        info_form= info(data=request.POST)
+        if user_form.is_valid() and info_form.is_valid():
+            user = user_form.save()
+            user.set_password(user.password)
+            user.save()
+            profile = info_form.save(commit=False)
+            profile.user = user
+            profile.save()
+            register = True
+        else:
+            return HttpResponse("<h1>somthing went wrong</h1>")
+    else:
+        user_form = userform(data=request.POST)
+        info_form = info(data=request.POST)
+    
+    return render(request, "owner/add_member.html", {
+        'user_form' : user_form,
+        'info_form' : info_form,
+        'register' : register,
+    })
+    
 
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['admin'])

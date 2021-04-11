@@ -1,13 +1,25 @@
-
-
-from django.contrib.auth.forms import UserCreationForm
-from django import forms 
+from django import forms
 from django.contrib.auth.models import User
+from .models import user
 
 
-class UserForm(UserCreationForm):
-    class Meta:
+
+class userform(forms.ModelForm):
+    password = forms.CharField(widget=forms.PasswordInput())
+
+    class Meta():
         model = User
-        fields = ['username', 'email','first_name','last_name','password1', 'password2']
+        fields=('username','password','email')
+
+##class for extra field
+class info(forms.ModelForm):
+    class Meta():
+        model = user
+        fields = ('Mobile','department','Pay_mode','Time_mode')
+
+
+
+
+       
 
     

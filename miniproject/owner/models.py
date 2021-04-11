@@ -1,21 +1,20 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here
-class User(models.Model):
-    CATEGORY = (
-        ('Owner', 'Owner'),
-        ('Staff', 'Staff'),
-        ('Member', 'Member')
-    )
-    Name = models.CharField(max_length=64, null=True)
-    Email = models.EmailField(max_length=64, null=True)
+class user(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    ##add extra field
+    
     Mobile= models.IntegerField()
-    Roll = models.CharField(max_length=20, null=True)
-    Username=models.CharField(max_length=64, null=True)   
+    department = models.CharField(max_length=50, null=True)
+    Pay_mode = models.CharField(max_length=50, null=True)
+    Time_mode = models.CharField(max_length=50, null=True)
 
-
-
-   
+    def __str__(self):
+        return self.user.username
+    
+ 
 class Menu(models.Model):
     CATEGORY=(
         ('Beverages','Beverages'),
@@ -28,7 +27,7 @@ class Menu(models.Model):
     category= models.CharField(max_length=50, null=True, choices=CATEGORY)
 
 class Transaction(models.Model):
-    Member_id = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    Member_id = models.ForeignKey(user, on_delete=models.CASCADE, null=True)
     Menu_id = models.ForeignKey(Menu, on_delete=models.CASCADE, null=True)
     date_added=models.DateTimeField(auto_now_add=True,null=True)
     Quantity=models.IntegerField(default=1)
@@ -38,7 +37,7 @@ class Payment(models.Model):
         ('Advance', 'Advance'),
         ('Due', 'Due')
     )
-    Member_id = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    Member_id = models.ForeignKey(user, on_delete=models.CASCADE, null=True)
     Amount_paid = models.IntegerField(default=1, null=True)
     date_added = models.DateTimeField(auto_now_add=True, null=True)
 
