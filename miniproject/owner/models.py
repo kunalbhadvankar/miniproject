@@ -3,9 +3,9 @@ from django.contrib.auth.models import User
 
 # Create your models here
 class user(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User,default=None, null=True, on_delete=models.CASCADE)
     ##add extra field
-    
+    Name = models.CharField(max_length=50, null=True)
     Mobile= models.IntegerField()
     department = models.CharField(max_length=50, null=True)
     Pay_mode = models.CharField(max_length=50, null=True)
@@ -31,6 +31,8 @@ class Transaction(models.Model):
     Menu_id = models.ForeignKey(Menu, on_delete=models.CASCADE, null=True)
     date_added=models.DateTimeField(auto_now_add=True,null=True)
     Quantity=models.IntegerField(default=1)
+    Paid = models.BooleanField(default=0)
+
 
 class Payment(models.Model):
     CATEGORY = (
@@ -40,4 +42,5 @@ class Payment(models.Model):
     Member_id = models.ForeignKey(user, on_delete=models.CASCADE, null=True)
     Amount_paid = models.IntegerField(default=1, null=True)
     date_added = models.DateTimeField(auto_now_add=True, null=True)
+    Pay_categoery = models.CharField(max_length=50, null=True, choices=CATEGORY)
 

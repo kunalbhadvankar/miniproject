@@ -9,13 +9,13 @@ class userform(forms.ModelForm):
 
     class Meta():
         model = User
-        fields=('username','password','email')
+        fields=('id','username','password','email')
 
 ##class for extra field
 class info(forms.ModelForm):
     class Meta():
         model = user
-        fields = ('Mobile','department','Pay_mode','Time_mode')
+        fields = ('Name','Mobile','department','Pay_mode','Time_mode')
 
 
 

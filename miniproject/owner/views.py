@@ -76,7 +76,7 @@ def menu(request):
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['admin'])
 def home(request):
-     pass
+    return render(request, 'owner/main.html')
 
 def logout(request):
     django_logout(request)
@@ -86,6 +86,8 @@ def logout(request):
 def index(request):
     return render(request, 'owner/index.html')
 
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['member'])
 def menu2(request):
     menu = Menu.objects.all()
     return render(request, "owner/menu2.html",{'menu': menu}) 
