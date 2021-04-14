@@ -5,7 +5,8 @@ from django.contrib.auth.models import User
 class user(models.Model):
     user = models.OneToOneField(User,default=None, null=True, on_delete=models.CASCADE)
     ##add extra field
-    Name = models.CharField(max_length=50, null=True)
+    first_name = models.CharField(max_length=50, null=True)
+    last_name = models.CharField(max_length=50, null=True)
     Mobile= models.IntegerField()
     department = models.CharField(max_length=50, null=True)
     Pay_mode = models.CharField(max_length=50, null=True)

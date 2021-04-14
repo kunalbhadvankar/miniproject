@@ -82,7 +82,8 @@ def logout(request):
     django_logout(request)
     return render(request, 'owner/login.html')
 
-
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['member'])
 def index(request):
     return render(request, 'owner/index.html')
 
@@ -91,6 +92,22 @@ def index(request):
 def menu2(request):
     menu = Menu.objects.all()
     return render(request, "owner/menu2.html",{'menu': menu}) 
+
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['admin'])
+def about_us(request):
+    return render(request, 'owner/about_us.html')
+
+
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['admin'])
+def feedback(request):
+    return render(request, 'owner/feedback.html')
+
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['admin'])
+def pay_history(request):
+    return render(request, 'owner/pay_history.html')
 
 
 
