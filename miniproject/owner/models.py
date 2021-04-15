@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 # Create your models here
 class user(models.Model):
     user = models.OneToOneField(User,default=None, null=True, on_delete=models.CASCADE)
-    ##add extra field
+    ##@add extra field
     Name = models.CharField(max_length=50, null=True)
     Mobile= models.IntegerField()
     department = models.CharField(max_length=50, null=True)
@@ -42,5 +42,5 @@ class Payment(models.Model):
     Member_id = models.ForeignKey(user, on_delete=models.CASCADE, null=True)
     Amount_paid = models.IntegerField(default=1, null=True)
     date_added = models.DateTimeField(auto_now_add=True, null=True)
-    Pay_categoery = models.CharField(max_length=50, null=True, choices=CATEGORY)
+    Pay_category = models.CharField(max_length=50, null=True, choices=CATEGORY)
 
