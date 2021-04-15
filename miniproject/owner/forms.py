@@ -15,7 +15,7 @@ class userform(forms.ModelForm):
 class info(forms.ModelForm):
     class Meta():
         model = user
-        fields = ('Name','Mobile','department','Pay_mode','Time_mode')
+        fields = ('first_name','last_name','Mobile','department','Pay_mode','Time_mode')
 
 
 
